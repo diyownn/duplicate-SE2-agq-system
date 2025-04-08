@@ -1,0 +1,378 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "IBM Plex Sans", Arial, Helvetica;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.top-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; 
+  width: 100%;
+  padding-bottom: 10px;
+  align-items: flex-start;
+}
+
+.dept-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+}
+
+.searchcont{
+  width: 100%;
+}
+
+.dept-label {
+  background-color: rgb(144, 174, 94);
+  color: white;
+  font-size: 14px;
+  text-align: start;
+  padding: 10px 1px;
+  width: fit-content;
+  min-width: 140px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 25px  25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0 30px 0;
+  display: flex;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #d9d9d9;
+  font-size: 16px;
+}
+
+.search-button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 120px;
+  background-color: #a5c76f;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.table-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none; /* Allows clicking through the title */
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.undo-button {
+  background-color: #a5c76f;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+button {
+  background-color: #8b9e62;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.restore-button, .delete-button{
+  background-color: #8b9e62;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px ;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #798c54;
+}
+
+.undo-button:hover {
+background-color: #798c54;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.spacer {
+  width: 120px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #d8e4c2;
+  border-radius: 25px;
+  padding: 20px;
+  border: 15px solid #8baa5a;
+  margin-bottom: 50px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #e8f0da;
+  min-width: 600px;
+}
+
+th {
+  background-color: #fff;
+  padding: 15px 10px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid #8baa5a;
+}
+
+tr {
+  background-color: #fff;
+}
+
+td {
+  padding: 15px 10px;
+  border: 2px solid #8baa5a;
+  height: 30px;
+  text-align: center;
+}
+
+.modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Fully transparent initially */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease-out; 
+}
+
+.modal.show {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5); /* Fade in background */
+}
+
+.modal-content {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  
+  opacity: 0; /* Start hidden */
+  transform: translateY(50px); /* Start lower */
+  transition: opacity 0s ease-out, transform 0.4s ease-out;
+}
+
+.modal.show .modal-content {
+  opacity: 1;
+  transform: translateY(0); /* Move to final position */
+}
+
+.edit-input{
+  margin-top: 10px;
+}
+
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 0px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .table-title {
+    position: static;
+    order: 1;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .undo-button-container {
+    order: 2;
+    align-self: center;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .search-button {
+    width: 90px;
+    font-size: 14px;
+  }
+
+  .search-input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 15px;
+    border-width: 10px;
+  }
+  
+  .dept-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-container {
+    margin-bottom: 15px;
+  }
+  
+  .nav-link-container {
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .search-button {
+    width: 80px;
+    font-size: 12px;
+  }
+
+  .undo-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 10px;
+    border-width: 8px;
+  }
+
+  .dept-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-container {
+    margin-bottom: 15px;
+  }
+  
+  .nav-link-container {
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+}

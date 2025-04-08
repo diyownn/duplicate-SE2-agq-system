@@ -1,0 +1,211 @@
+body {
+    font-family: IBM Plex Sans;
+    text-align: center;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the top */
+    width: 100%;
+    padding-bottom: 10px;
+    align-items: flex-start;
+}
+  
+.dept-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+    width: 100%;
+}
+  
+.dept-label {
+    background-color: rgb(144, 174, 94);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: start;
+    padding: 8px 1px;
+    width: fit-content;
+    min-width: 140px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 25px 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    z-index: 99;
+}
+/* Add this to your CSS file (owndash.css) */
+
+.dept-label a {
+    color: inherit; /* Maintains the same text color */
+    text-decoration: none; /* Removes the default underline */
+    position: relative;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+.dept-label a:hover {
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    opacity: 0.9; /* Slight opacity change on hover */
+}
+
+/* Animated underline effect */
+.dept-label a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: white; /* Match the text color */
+    transition: width 0.3s ease;
+}
+
+.dept-label a:hover::after {
+    width: 100%; /* Expand the underline on hover */
+}
+
+/* Styles for the home icon in the header */
+.home-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-icon {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Optional hover effect to enhance clickability */
+.home-link:hover {
+    opacity: 0.8;
+}
+
+.company-label {
+    background-color: rgb(160, 184, 117);
+    color: white;
+    font-size: 14px;
+    text-align: start;
+    padding: 10px 1px;
+    width: fit-content;
+    min-width: 140px;
+    position: absolute;
+    top: 0;
+    left: 125px;
+    border-radius: 0 25px 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    z-index: 98;
+}
+  
+.header-container {
+    margin-top: auto; /* Push the search and logout to the bottom */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.container {
+    margin: auto;
+    padding: 20px 40px 40px 40px;
+    max-width: 900px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.box {
+    flex: 1 1 250px;
+    background-color: #90ae5e;
+    padding: 30px;
+    border-radius: 12px;
+    color: black;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.1);
+}
+
+.box:nth-child(even) {
+    background-color: #d0dcb3;
+    color: #333;
+}
+
+.box:hover {
+    box-shadow: 0 0 20px rgb(85, 114, 39);
+    transform: scale(1.08);
+}
+
+.box:nth-child(even):hover {
+    background-color: #dee7c9;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 80%;
+        padding: 30px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .box {
+        font-size: 18px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .box {
+        font-size: 16px;
+        padding: 18px;
+    }
+}

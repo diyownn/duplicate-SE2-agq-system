@@ -1,0 +1,241 @@
+/* General Body Styling */
+body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1400px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+}
+
+/* Search and Add User Buttons Container */
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    width: 225px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    background-color: #d0d0d0;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Search Button Styling */
+.search-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #7a994e;
+    color: black;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    height: 36px;
+}
+
+/* Add User Button Styling */
+.add-user-btn {
+    padding: 10px 20px;
+    background-color: #7a994e;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    height: 38px;
+}
+
+/* Plus Icon */
+.add-user-btn::after {
+    content: '+';
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #d8d8d8;
+    color: black;
+    border-radius: 50%;
+    padding: 4px 10px;
+    margin-left: 10px;
+}
+
+/* Green Container */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    background-color: #d6deb1;
+    padding: 30px;
+    border-radius: 30px;
+    border: 8px solid #8ea75e;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+/* Table Container Styling */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 0;
+    border-radius: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+/* Table Header */
+th {
+    background-color: #d6deb1;
+    border: 2px solid #8ea75e;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Table Cells */
+td {
+    border: 2px solid #8ea75e;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Column Specific Widths */
+table tr td:nth-child(1), /* User ID */
+table tr th:nth-child(1) {
+    width: 13%;
+    min-width: 100px;
+}
+
+table tr td:nth-child(2), /* Name */
+table tr th:nth-child(2) {
+    width: 15%;
+    min-width: 100px;
+}
+
+table tr td:nth-child(3), /* Email */
+table tr th:nth-child(3) {
+    width: 35%;
+    min-width: 200px;
+}
+
+table tr td:nth-child(4), /* Department */
+table tr th:nth-child(4) {
+    width: 22%;
+    min-width: 150px;
+}
+
+table tr td:nth-child(5), /* Delete */
+table tr th:nth-child(5) {
+    width: 15%;
+    min-width: 100px;
+}
+
+/* Delete Button Styling */
+.delete-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #8ea75e;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #7a994e;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .header, .container {
+        width: 95%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header, .container {
+        width: 98%;
+        padding: 15px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    th, td {
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .delete-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* Back Button */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    margin: 0;
+}
+
+.back-button a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+}

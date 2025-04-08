@@ -1,0 +1,617 @@
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+.search-container {
+    display: flex;
+    position: relative; /* Needed for absolute positioning of dropdown */
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+
+.search-bar {
+    flex: 1; /* Ensures input expands properly */
+    min-width: 300px; /* Prevents shrinking too much */
+    border-radius: 8px; /* Smooth corners */
+}
+
+
+.search-button {
+    padding: 12px 25px;
+    border: none;
+    background-color: rgb(144, 174, 94);
+    color: white;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', 'Arial';
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+ 
+.search-button:hover {
+    opacity: 1;
+    background-color: rgb(99, 133, 46);
+}
+ 
+#dropdown {
+    position: absolute;
+    top: 100%; /* Moves it below the search bar */
+    left: 0;
+    width: 82%; /* Matches search bar width */
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none; /* Remove top border to visually connect with input */
+    border-radius: 0 0 8px 8px; /* Round only bottom corners */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the top */
+    width: 100%;
+    padding-bottom: 10px;
+    align-items: flex-start;
+}
+ 
+.dept-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+    width: 100%;
+}
+ 
+.dept-label {
+    background-color: rgb(144, 174, 94);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: start;
+    padding: 8px 1px;
+    width: fit-content;
+    min-width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 25px  25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    z-index: 99;
+}
+.dept-label a {
+    color: inherit; /* Maintains the same text color */
+    text-decoration: none; /* Removes the default underline */
+    position: relative;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+.dept-label a:hover {
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    opacity: 0.9; /* Slight opacity change on hover */
+}
+
+/* Animated underline effect */
+.dept-label a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: white; /* Match the text color */
+    transition: width 0.3s ease;
+}
+
+.dept-label a:hover::after {
+    width: 100%; /* Expand the underline on hover */
+}
+
+/* Styles for the home icon in the header */
+.home-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-icon {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Optional hover effect to enhance clickability */
+.home-link:hover {
+    opacity: 0.8;
+}
+
+.company-label {
+    background-color: rgb(160, 184, 117);
+    color: white;
+    font-size: 14px;
+    text-align: start;
+    padding: 9px 1px;
+    width: fit-content;
+    min-width: 130px;
+    position: absolute;
+    top: 0;
+    left: 180px;
+    border-radius: 0 25px  25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    z-index: 98;
+}
+
+
+.selected-dept-label {
+    background-color: rgb(174, 197, 160);
+    color: white;
+    font-size: 14px;
+    text-align: start;
+    padding: 9px 1px;
+    width: fit-content;
+    min-width: 200px;
+    position: absolute;
+    padding-left: 50px;
+    top: 0;
+    left: 260px;
+    border-radius: 0 25px  25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 0px -1px 7px 0px rgba(0,0,0,0.19);
+    z-index: 97;
+}
+ 
+.header-container {
+    margin-top: auto; /* Push the search and logout to the bottom */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+
+.container {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+.transaction {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.transaction-header {
+    background-color: #c3d2a2;
+}
+
+.transaction-content {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+.add-company {
+    display: flex;
+    align-items: center;
+    background-color: #94ae5e;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    margin-left: 71%;    
+}
+ 
+.add-company:hover {
+    background-color: #63852e;
+}
+ 
+.add-company span {
+    color: black;
+    margin-right: 10px;
+}
+
+.add-company .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: black; /* Changed to black */
+}
+.icons {
+    width: 30px;
+    height: 30px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .icons svg {
+    width: 14px;
+    height: 14px;
+  }
+
+.search-bar {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 50px 0 0 50px;
+    font-size: 16px;
+    background-color: #d1d1d1;
+    font-weight: bold;
+}
+
+
+.search-button {
+    padding: 12px 25px;
+    border: none;
+    background-color: #8da66d;
+    color: white;
+    font-size: 16px;
+    font-family: 'IBM Plex Sans';
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.transaction {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+ 
+}
+
+
+.transaction:hover {
+    background-color: #f2f2f2;
+}
+
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #c3d2a2;
+    border-bottom: 1px solid #000;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+
+.transaction-header .icon {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.transaction-header.active .icon {
+    transform: rotate(180deg);
+}
+
+
+.transaction-header.active:hover,
+.transaction-header:hover {
+    background-color: #b0c494;
+}
+
+
+/* drop down effect */
+.transaction-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #fff;
+    transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+    padding: 0;
+}
+
+
+.transaction-content.open {
+    max-height: 200px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+
+/* Transaction item styling with solid hover background */
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #000;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: bold;
+}
+
+
+.transaction-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: #e8e8e8;
+}
+
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+
+/* SOA, INVOICE, MANIFESTO item styling */
+.soa-item,
+.invoice-item,
+.manifesto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #000;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: bold;
+}
+
+
+.soa-item:hover,
+.invoice-item:hover,
+.manifesto-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: #e8e8e8;
+}
+
+
+.soa-item:last-child,
+.invoice-item:last-child,
+.manifesto-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Action buttons */
+.transaction-actions {
+    display: flex;
+    gap: 8px;
+    z-index: 1;
+}
+
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+.check-btn {
+    display: none;
+    color: #94ae5e;
+}
+
+
+.edit-btn {
+    color: #94ae5e;
+}
+
+
+.edit-btn:hover {
+    background-color: #63852e;
+    color: white;
+}
+
+
+.archive-btn {
+    color: #94ae5e;
+}
+
+
+.archive-btn:hover {
+    background-color: #63852e;
+    color: white;
+}
+
+
+/* Checkbox styling */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.transaction-checkbox {
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid #94ae5e;
+    border-radius: 3px;
+    background-color: white;
+    position: relative;
+}
+
+
+.transaction-checkbox:checked {
+    background-color: #94ae5e;
+}
+
+
+.transaction-checkbox:checked:after {
+    content: '\2714';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+
+/* Remove the previous separate employee/owner checkbox styles */
+.employee-checkbox,
+.owner-checkbox {
+    display: none;
+}
+
+
+/* SOA item styling for reference */
+.soa-item-ref {
+    text-align: left;
+    flex: 1;
+    font-weight: bold;
+}
+
+
+/* Employee transaction view */
+.employee-transaction {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+
+.employee-transaction:hover {
+    background-color: #f2f2f2;
+}
+
+
+.employee-transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #000;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: bold;
+}
+
+
+.employee-transaction-item:hover {
+    background-color: #e8e8e8;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.employee-transaction-item:last-child {
+    border-bottom: none;
+}
+
+/* Styling for "No records found" message */
+.no-records-message {
+    margin-left: 5px;
+    margin-top: 15px;
+    padding: 15px;
+    color: #555;
+    font-style: italic;
+    display: block;
+}
+
+.no-results-container {
+    padding: 20px;
+    text-align: left;
+}
+        
+.no-records-container {
+    text-align: left;
+    padding: 10px;
+}
+        
+.return-btn {
+    background-color: #8BAD5F;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-top: 15px;
+    margin-left: 15px;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+        
+.return-btn:hover {
+    background-color: #7a9851;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
